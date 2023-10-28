@@ -118,7 +118,7 @@ const App = () => {
               <h2>{product.name}</h2>
               <p>Price: ${product.price}</p>
               <button onClick={() => editProduct(product)}>Edit</button>
-              <button onClick={() => deleteProduct(product.id)}>Delete</button>
+              <button onClick={() => deleteProduct(product._id)}>Delete</button>
             </div>
           </div>
         ))}
