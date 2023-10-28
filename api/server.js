@@ -1,12 +1,21 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const cors = require("cors");
+
+
 const getRoutes = require("./router/getRoutes");
 const postRoutes = require("./router/postRoutes");
 const putRoutes = require("./router/putRoutes");
 const deleteRoutes = require("./router/deleteRoutes");
 
 const port = 3000;
+
+app.use(cors());
+
+
+
+
 
 app.use((req, res, next) => {
     console.log(`${req.method} request received for ${req.url}`);

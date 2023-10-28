@@ -9,7 +9,7 @@ router.put("/products/:id", async (req, res) => {
       new: true,
       runValidators: true,
     });
-    // we cannot find the product in the database
+    // If the product is not found
     if (!product) {
       return res.status(404).json({ msg: "Product not found" });
     }
@@ -17,7 +17,7 @@ router.put("/products/:id", async (req, res) => {
     res.status(200).json({ updatedProduct });
   } catch (err) {
     console.log(err.message);
-    res.status(500).send("Server Error");
+    res.status(500).json({ error: "Server Error" }); // Respond with a JSON object
   }
 });
 
