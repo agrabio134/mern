@@ -3,18 +3,15 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+// dotenv configuration 
+require("dotenv").config();
+const port = process.env.PORT;
+const mongodbURI = process.env.MONGODB_URI;
 
-const getRoutes = require("./router/getRoutes");
-const postRoutes = require("./router/postRoutes");
-const putRoutes = require("./router/putRoutes");
-const deleteRoutes = require("./router/deleteRoutes");
+const productRouter = require("./router/ProductRouter");
 
-const port = 3000;
 
 app.use(cors());
-
-
-
 
 
 app.use((req, res, next) => {
@@ -23,19 +20,16 @@ app.use((req, res, next) => {
   });
   
 app.use(express.json());
-app.use(getRoutes);
-app.use(postRoutes);
-app.use(putRoutes);
-app.use(deleteRoutes);
+app.use(productRouter);
 
 mongoose
   .connect(
-    "mongodb+srv://root:Admin123@nodeapi.m1aqxmf.mongodb.net/Node-Api?retryWrites=true&w=majority"
+    mongodbURI
   )
   .then(() => {
     console.log("MongoDB Connected");
     app.listen(port, () =>
-      console.log(`Example app listening on port ${port}!`)
+      console.log(`istening on port ${port}!`)
     );
   })
   .catch((err) => console.log(err));
